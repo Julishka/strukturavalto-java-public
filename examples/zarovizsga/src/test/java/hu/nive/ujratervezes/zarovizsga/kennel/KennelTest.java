@@ -3,6 +3,7 @@ package hu.nive.ujratervezes.zarovizsga.kennel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -59,7 +60,10 @@ public class KennelTest {
         kennel.playWith("Morzsi", 4);
         kennel.playWith("Bigli", 4);
         kennel.playWith("Zokni", 2);
+        List<String> twoDogs = new ArrayList<>();
+        twoDogs.add("Bigli");
+        twoDogs.add("Morzsi");
 
-        assertEquals(List.of("Bigli", "Morzsi"), kennel.getHappyDogNames(7));
+        assertEquals(twoDogs, kennel.getHappyDogNames(7));
     }
 }
