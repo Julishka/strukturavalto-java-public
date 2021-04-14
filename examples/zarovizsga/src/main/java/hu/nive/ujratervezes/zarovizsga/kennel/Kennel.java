@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kennel {
-    List<Dog> dogs;
+    protected List<Dog> dogs;
 
     public Kennel() {
         this.dogs = new ArrayList<>();

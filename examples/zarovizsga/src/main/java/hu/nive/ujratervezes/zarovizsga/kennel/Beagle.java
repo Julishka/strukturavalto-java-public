@@ -8,11 +8,11 @@ public class Beagle extends Dog {
 
     @Override
     public void feed() {
-        this.happiness += 2;
+        happiness += 2;
     }
 
     @Override
     public void play(int i) {
-        this.happiness += 2 * i;
+        happiness += 2 * i;
     }
 }
