@@ -11,6 +11,6 @@ public class Office extends Building {
 
     @Override
     public int clean() {
-        return 0;
+        return area * floorNumber * 100;
     }
 }

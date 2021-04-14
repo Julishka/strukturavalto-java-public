@@ -8,6 +8,6 @@ public class House extends Building {
 
     @Override
     public int clean() {
-        return 0;
+        return area * 80;
     }
 }
