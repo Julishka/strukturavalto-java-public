@@ -1,9 +1,11 @@
 package hu.nive.ujratervezes.zarovizsga.housecup;
 
+import org.flywaydb.core.internal.database.mysql.MySQLDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mariadb.jdbc.MariaDbDataSource;
+import org.mariadb.jdbc.MySQLDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,14 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HouseCupTest {
 
-    private MariaDbDataSource dataSource;
+    private MySQLDataSource dataSource;
 
     private HouseCup houseCup;
 
     @BeforeEach
     void init() throws SQLException {
-        dataSource = new MariaDbDataSource();
-        dataSource.setUrl("jdbc:mysqldb://localhost:3306/employees?useUnicode=true");
+        dataSource = new MySQLDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/employees?useUnicode=true");
         dataSource.setUser("root");
         dataSource.setPassword("helloworld");
 
@@ -41,6 +43,7 @@ class HouseCupTest {
     void test_get_points_of_house_one() throws SQLException {
         assertEquals(5, houseCup.getPointsOfHouse("Slytherin"));
     }
+
 
 
     @AfterEach

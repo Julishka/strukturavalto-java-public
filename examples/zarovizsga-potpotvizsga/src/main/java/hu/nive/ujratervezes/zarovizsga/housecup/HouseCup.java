@@ -11,8 +11,8 @@ public class HouseCup {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public int getPointsOfHouse(String house) {
-        //TODO
-        return 0;
+    public Integer getPointsOfHouse(String house) {
+        String sql = "SELECT SUM(points_earned) AS points_earned FROM house_points WHERE house_name = ?";
+        return jdbcTemplate.queryForObject(sql, (resultSet, i) -> resultSet.getInt("points_earned"), house);
     }
 }
