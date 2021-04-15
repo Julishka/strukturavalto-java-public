@@ -43,7 +43,6 @@ class HouseCupTest {
     }
 
 
-
     @AfterEach
     void destruct() throws SQLException {
         try (Connection connection = dataSource.getConnection()) {

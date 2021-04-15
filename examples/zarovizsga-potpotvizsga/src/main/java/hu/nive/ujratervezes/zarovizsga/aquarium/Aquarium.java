@@ -2,6 +2,7 @@ package hu.nive.ujratervezes.zarovizsga.aquarium;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Aquarium {
     List<Fish> pod;
@@ -11,6 +12,8 @@ public class Aquarium {
     }
 
     public void addFish(Fish fish) {
+        Objects.requireNonNull(fish);
+        pod.add(fish);
     }
 
     public void feed() {
