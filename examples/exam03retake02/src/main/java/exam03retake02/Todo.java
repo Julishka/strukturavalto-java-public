@@ -1,34 +1,32 @@
 package exam03retake02;
 
 public class Todo {
-
-    private String text;
-
-    private int priority;
-
-    private State state = State.NON_COMPLETED;
+    protected String text;
+    protected State state;
+    protected int priority;
 
     public Todo(String text, int priority) {
-        if (priority < 0 || priority > 5) {
-            throw new IllegalArgumentException("Invalid priority: " + priority);
+        if (priority > 5 || priority < 1) {
+            throw new IllegalArgumentException("Priority shall be between 1 and 5.");
         }
         this.text = text;
+        this.state = State.NON_COMPLETED;
         this.priority = priority;
+    }
+
+    public void complete() {
+        this.state = State.COMPLETED;
     }
 
     public String getText() {
         return text;
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
     public State getState() {
         return state;
     }
 
-    public void complete() {
-        state = State.COMPLETED;
+    public int getPriority() {
+        return priority;
     }
 }

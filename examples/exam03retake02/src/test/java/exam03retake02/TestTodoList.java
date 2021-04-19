@@ -3,6 +3,7 @@ package exam03retake02;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,17 +31,23 @@ public class TestTodoList {
 
     @Test
     void getMostImportantTodosText() {
-        assertEquals(List.of("Bevásárlás", "Vizsga"), todoList.getMostImportantTodosText());
+        List<String> importantTodos = new ArrayList<>();
+        importantTodos.add("Bevásárlás");
+        importantTodos.add("Vizsga");
+        assertEquals(importantTodos, todoList.getMostImportantTodosText());
     }
 
     @Test
     void getMostImportantTodosTextAnother() {
+        List<String> todos = new ArrayList<>();
+        todos.add("Szolgáltató");
+
         TodoList anotherTodoList = new TodoList();
         anotherTodoList.addTodo(new Todo("Bevásárlás", 3));
         anotherTodoList.addTodo(new Todo("Foci", 5));
         anotherTodoList.addTodo(new Todo("Szolgáltató", 2));
 
-        assertEquals(List.of("Szolgáltató"), anotherTodoList.getMostImportantTodosText());
+        assertEquals(todos, anotherTodoList.getMostImportantTodosText());
     }
 
     @Test
