@@ -1,52 +1,25 @@
 package exam03retake02;
 
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.Collator;
+import java.util.*;
 
 public class BalatonStorm {
 
     public List<String> getStationsInStorm(BufferedReader reader) {
-        JSONParser jsonParser = new JSONParser();
+        Objects.requireNonNull(reader);
         List<String> stationsInStorm = new ArrayList<>();
-        try {
-            String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                try {
-                    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-                    Integer id = (Integer) jsonObject.get("id");
-                    String station = (String) jsonObject.get("allomas");
-                    Double lat = (Double) jsonObject.get("lat");
-                    Double lng = (Double) jsonObject.get("lng");
-                    String description = (String) jsonObject.get("description");
-                    Integer level = (Integer) jsonObject.get("level");
-                    String groupId = (String) jsonObject.get("groupId");
-                    String stationType = (String) jsonObject.get("stationType");
-
-                    if (level == 3) {
-                        stationsInStorm.add(station);
-                    }
-                    return stationsInStorm;
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) reader.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        Gson gson = new Gson();
+        Station[] stations = gson.fromJson(reader, Station[].class);
+        for (Station station : stations) {
+            System.out.println(station);
+            if (station.getLevel() == 3) {
+                stationsInStorm.add(station.getAllomas());
             }
         }
+        Collections.sort(stationsInStorm, Collator.getInstance(new Locale("hu", "HU")));
         return stationsInStorm;
     }
 }
